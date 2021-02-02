@@ -40,5 +40,35 @@ namespace App2MobileApp.Views
                     agendamentoViewModel.agendamento.DataAgendamento.ToString("dd/MM/yyyy"),
                     agendamentoViewModel.agendamento.HoraAgendamento), "OK");
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            MessagingCenter.Subscribe<Agendamento>(this, "Agendamento",
+                (msg) =>
+                {
+                    DisplayAlert("Agendamento",
+                string.Format(
+                    @"
+                    Nome: {0} 
+                    Fone: {1} 
+                    Email: {2}  
+                    Data: {3} 
+                    Horário: {4}", agendamentoViewModel.agendamento.Veiculo.Nome,
+                    agendamentoViewModel.agendamento.Fone,
+                    agendamentoViewModel.agendamento.Email,
+                    agendamentoViewModel.agendamento.DataAgendamento.ToString("dd/MM/yyyy"),
+                    agendamentoViewModel.agendamento.HoraAgendamento), "OK");
+                });
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<Agendamento>(this, "Agendamento");
+        }
+
+
+
     }
 }

@@ -28,6 +28,7 @@ namespace App2MobileApp.ViewModel
         }
 
 
+
         public ListagemViewModel()
         {
             this.Veiculos = new ListagemVeiculos().Veiculos;

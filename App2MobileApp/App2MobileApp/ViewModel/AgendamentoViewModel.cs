@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace App2MobileApp.ViewModel
 {
@@ -11,6 +13,11 @@ namespace App2MobileApp.ViewModel
         {
             this.agendamento = new Agendamento();
             this.agendamento.Veiculo = veiculo;
+
+            AgendarCommand = new Command(() => 
+            {
+                MessagingCenter.Send<Agendamento>(this.agendamento, "Agendamento");
+            });
         }
 
         public Agendamento agendamento { get; set; }
@@ -51,6 +58,9 @@ namespace App2MobileApp.ViewModel
             get { return agendamento.HoraAgendamento; }
             set { agendamento.HoraAgendamento = value; }
         }
+
+        public ICommand AgendarCommand { get; set; }
+
 
     }
 }
